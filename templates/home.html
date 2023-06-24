@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Iris Flower</title>
+    <style>
+        body{
+            background-color:darkolivegreen;
+        }
+
+        .form-container {
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f2f2f2;
+        border-radius: 5px;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        grid-gap: 10px;
+        }
+
+        /* Styling the form fields */
+        .form-container input[type="text"],
+        .form-container input[type="number"],
+        .form-container input[type="date"] {
+        flex: 1;
+        padding: 10px 50px 10px 50px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        }
+
+        select[name="Region"],
+        select[name="Area"] {
+            flex: 1;
+            padding: 10px 50px 10px 50px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+
+        /* Styling the form submit button */
+        .form-container button[type="submit"] {
+        grid-column: 1 / span 7;
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        }
+
+        /* Styling the form submit button on hover */
+        .form-container button[type="submit"]:hover {
+        background-color: #45a049;
+        }
+
+        /* Styling the result text element */
+        .form-container h2 {
+        width: 100%;
+        padding: 10px;
+        margin-top: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: #f9f9f9;
+        }
+        /* Disabling arrow symbols for number input */
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        }
+
+        /* Styling the number input */
+        input[type="number"] {
+        -moz-appearance: textfield;
+        appearance: textfield;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Unemployment rate prediction</h1>
+        <form action="{{ url_for('predict')}}" method="post">
+            <!-- <input type="text" name="Region" placeholder="Region" required="required" /><br> -->
+            <select name="Region" required="required">
+                <option value="" disabled selected>Select a Region</option>
+                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                <option value="Assam">Assam</option>
+                <option value="Bihar">Bihar</option>
+                <option value="Chhattisgarh">Chhattisgarh</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Goa">Goa</option>
+                <option value="Gujarat">Gujarat</option>
+                <option value="Haryana">Haryana</option>
+                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                <option value="Jammu & Kashmir">Jammu & Kashmir</option>
+                <option value="Jharkhand">Jharkhand</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Kerala">Kerala</option>
+                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Meghalaya">Meghalaya</option>
+                <option value="Odisha">Odisha</option>
+                <option value="Puducherry">Puducherry</option>
+                <option value="Punjab">Punjab</option>
+                <option value="Rajasthan">Rajasthan</option>
+                <option value="Sikkim">Sikkim</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="Telangana">Telangana</option>
+                <option value="Tripura">Tripura</option>
+                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                <option value="Uttarakhand">Uttarakhand</option>
+                <option value="West Bengal">West Bengal</option>
+                <option value="Chandigarh">Chandigarh</option>
+            </select>            
+            <input type="date" step="0.0001" name="Date" required="required" /><br>
+            <input type="number" step="0.0001" name="Estimated Employed" placeholder="Estimated Employed" required="required" /><br>
+            <input type="number" step="0.0001" name="Estimated Labour Participation Rate (%)" placeholder="Estimated Labour Participation Rate (%)" required="required" /><br>
+            <!-- <input type="text" name="Area" placeholder="Area" required="required" /><br> -->
+            <select name="Area" required="required">
+                <option value="" disabled selected>Select an Area</option>
+                <option value="Rural">Rural</option>
+                <option value="Urban">Urban</option>
+            </select>            
+            <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+        </form>
+        <h2>{{prediction_text}}</h2>  
+    </div>
+</body>
+
+</html>
